@@ -1,20 +1,38 @@
+
+ [{
+    "word": "barber",
+    "frequency": 8
+},
 {
-    "words":[
-       {
-          "barber":8,
-          "person":3,
-          "good":1,
-          "huge":5,
-          "knew":1,
-          "secret":6,
-          "kept":4,
-          "word":2,
-          "keeping":2,
-          "driving":1,
-          "crazy":1,
-          "went":1,
-          "mountain":1
-       }
-    ]
- }
- 
+    "word": "person",
+    "frequency": 3
+},
+{
+    "word": "good",
+    "frequency": 1
+},
+{
+    "word": "huge",
+    "frequency": 5
+},
+{
+    "word": "knew",
+    "frequency": 1
+},
+{
+    "word": "secrete",
+    "frequency": 6
+},
+{
+    "word": "kept",
+    "frequency": 4
+},
+{
+    "word": "driving",
+    "frequency": 2
+},
+{
+    "word": "mountain",
+    "frequency": 1
+}
+]
