@@ -22,7 +22,13 @@
     /* Size */
     --size-border-radius: 4px;
 }
-
+*{
+    box-sizing: border-box;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
 head, body{
     font-family: 'Ubuntu';
 }
@@ -34,6 +40,11 @@ body{
 
 h1{
     font-weight: var(--weight-bold);
-    text-align: center;
+    padding-left: 50px;
 }
 
+
+.canvas{
+    width: 100%;
+    height: 100%;
+}

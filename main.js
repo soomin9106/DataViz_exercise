@@ -25,52 +25,54 @@ d3.json("data.json").then(data => {
     const rects = graph.selectAll("rect").data(data);
     const y = d3
     .scaleLinear() // 한계치 설정
-    .domain([0, d3.max(data, d => d.orders)])
+    .domain([0, d3.max(data, d => d.frequency)])
     .range([graphHeight, 0]);
 
-    const min = d3.min(data, d => d.orders); // 가장 작은 수 반환
-    const max = d3.max(data, d => d.orders); // 가장 큰 수 반환
-    const extent = d3.extent(data, d => d.orders); // [min, max] 반환
+    const min = d3.min(data, d => d.frequency); // 가장 작은 수 반환
+    const max = d3.max(data, d => d.frequency); // 가장 큰 수 반환
+    const extent = d3.extent(data, d => d.frequency); // [min, max] 반환
 
     const x = d3
     .scaleBand()
     .domain(data.map(item => item.word)) // data 각각의 이름 설정
-    .range([0, 500])
-    .paddingInner(0.2) // 0.2 padding
-    .paddingOuter(0.2);
+    .range([0,250])
+    .paddingInner(0.5) // 0.5 padding
+    .paddingOuter(0.5);
 
     rects
+    .attr("height", d =>graphHeight - y(d.frequency)) 
     .attr("width", x.bandwidth)
-    .attr("height", d => graphHeight - y(d.orders)) // data의 orders 값 적용
     .attr("fill", "orange")
-    .attr("x", d => x(d.word)) // data index 값 * 70
+    .attr("x", d => x(d.word)) 
     .attr("y", d => y(d.frequency));
 
     // 반환되지 못한 나머지 data 가상 DOM으로 생성
     rects
     .enter()
-   .append("rect")
-   .attr("width", x.bandwidth)
-   .attr("height", d => graphHeight - y(d.orders))
-   .attr("fill", "orange")
-   .attr("x", d => x(d.word))
-   .attr("y", d => y(d.frequency)); // 위에 있는 그래프 뒤집기
+    .append("rect")
+    .attr("width", x.bandwidth)
+    .attr("height", d => graphHeight - y(d.frequency))
+    .attr("fill", "orange")
+    .attr("x", d => x(d.word))
+    .attr("y", d => y(d.frequency)); // 위에 있는 그래프 뒤집기
+
 
     // x축 y축 (axis) 생성
     const xAxis = d3.axisBottom(x);
     const yAxis = d3
     .axisLeft(y)
-    .ticks(3) //ticks 는 y축 눈금 갯수
-    .tickFormat(d => d + " orders"); // 눈금 값 설정
+    .ticks(10) //ticks 는 y축 눈금 갯수
+    .tickFormat(d => d + " freq"); // 눈금 값 설정
 
     // 축 적용
     xAxisGroup.call(xAxis);
     yAxisGroup.call(yAxis);
- 
+
     xAxisGroup
     .selectAll("text") // x축 눈금 값. text 선택
     .attr("transform", "rotate(-40)")
     .attr("text-anchor", "end")
-    .attr("fill", "orange");
+    .attr("fill", "black");
+ 
 });
 
