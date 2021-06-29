@@ -21,6 +21,8 @@ const xAxisGroup = graph
   .attr("transform", `translate(0, ${graphHeight})`); // x축 아래로 translate
 const yAxisGroup = graph.append("g");
 
+const tooltip = d3.select("rect");
+
 d3.json("data.json").then(data => {
     const rects = graph.selectAll("rect").data(data);
     const y = d3
@@ -54,8 +56,16 @@ d3.json("data.json").then(data => {
     .attr("height", d => graphHeight - y(d.frequency))
     .attr("fill", "orange")
     .attr("x", d => x(d.word))
-    .attr("y", d => y(d.frequency)); // 위에 있는 그래프 뒤집기
+    .attr("y", d => y(d.frequency))
+    .on('mouseover', d =>{
+        tooltip
+          .style("display", "block")
+          .html((d.word) + "<br>" + "£" + (d.frequency));
+    })
+      .on('mouseout', d => { tooltip.style("display", "none");
+    });
 
+    
 
     // x축 y축 (axis) 생성
     const xAxis = d3.axisBottom(x);
@@ -73,6 +83,7 @@ d3.json("data.json").then(data => {
     .attr("transform", "rotate(-40)")
     .attr("text-anchor", "end")
     .attr("fill", "black");
+      
  
 });
 

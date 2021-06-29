@@ -24,6 +24,7 @@
 }
 *{
     box-sizing: border-box;
+    font-family: 'Ubuntu';
 }
 html, body{
     width: 100%;
