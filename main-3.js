@@ -43,7 +43,7 @@ Plotly.d3.csv(rawDataURL, (error,rawData) =>{
         }
     };
 
-    Plotly.newPlot('myDiv', data, layout);
+    Plotly.newPlot('myDiv', data, layout, {editable: true});
 
 })
 
