@@ -16,6 +16,7 @@ loadJson()
     const trace={
         x: wordArr,
         y: freqArr,
+        name: 'words',
         type: 'bar',
         marker: {color: 'rgb(142,124,195)'}
     };
@@ -23,7 +24,7 @@ loadJson()
     const data = [trace];
 
     const layout = {
-        title: 'Word Frequency Graph',
+        title: 'Word Frequency Graph (able to edit ver)',
         font:{
           family: 'Ubuntu'
         },
@@ -35,10 +36,20 @@ loadJson()
           zeroline: false,
           gridwidth: 2
         },
-        bargap :0.05
+        bargap :2
       };
       
-      Plotly.newPlot('myDiv', data, layout);
+      const config = {
+        toImageButtonOptions: {
+          format: 'svg', // one of png, svg, jpeg, webp
+          filename: 'custom_image',
+          height: 500,
+          width: 700,
+          scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+        }
+      };
+
+      Plotly.newPlot('myDiv', data, layout,config);
     
 })
 .catch(console.log);
