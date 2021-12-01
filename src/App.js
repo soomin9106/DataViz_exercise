@@ -2,9 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import { DataGrid } from '@material-ui/data-grid';
 
-
-
-
 function App() {
 
   const columns=[
